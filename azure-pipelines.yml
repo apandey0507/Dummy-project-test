@@ -20,5 +20,6 @@ steps:
   displayName: Unit Test 
 
 - script: |
+    npm install -g @angular/cli
     ng build --prod
   displayName: 'build project'
