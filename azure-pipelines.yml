@@ -18,12 +18,10 @@ steps:
 - script: |
     npm ci
   condition: succeededOrFailed()
-  workingDirectory: $(WORKSPACE_NAME)
   displayName: 'clean install'
 
 - script: npm run test
-  condition: succeededOrFailed()
-  workingDirectory: $(WORKSPACE_NAME)  
+  condition: succeededOrFailed()  
   displayName: Unit Test 
 
 - script: |
