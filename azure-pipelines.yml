@@ -12,8 +12,14 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '14.x'
+    versionSpec: '16.x'
   displayName: 'Install Node.js'
+
+- script: |
+    npm ci
+  condition: succeededOrFailed()
+  workingDirectory: $(WORKSPACE_NAME)
+  displayName: 'clean install'
 
 - script: npm run test
   condition: succeededOrFailed()
@@ -21,7 +27,5 @@ steps:
   displayName: Unit Test 
 
 - script: |
-    npm install -g @angular/cli
-    npm install
     ng build --prod
-  displayName: 'npm install and build'
+  displayName: 'build project'
